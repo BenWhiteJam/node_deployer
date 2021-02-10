@@ -1,0 +1,16 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: node-monitoring-cronjob-metrics
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: kubectl
+              image: gcr.io/node-testnets-282010/kubemanager:latest
+          restartPolicy: OnFailure
+  schedule: "* */1 * * *"
+
+# works: "sh", "-c", "kubectl get namespace -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d '1 hour ago' -Ins --utc | sed 's/+0000/Z/')'" && $1 !~ /(default|monitoring|kube.*)/ { print $1 }' | xargs --no-run-if-empty kubectl delete namespace"]
