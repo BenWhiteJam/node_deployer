@@ -1,5 +1,5 @@
 ## Architecture Overview
-![Monitoring Infrastructure](/docs/monitoring_infrastructure.png "Monitoring Infrastructure")
+![Monitoring Infrastructure](./docs/monitoring_infrastructure.png "Monitoring Infrastructure")
 
 ## Deploying the Monitoring Stack
 
